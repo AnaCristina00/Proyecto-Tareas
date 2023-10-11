@@ -2,55 +2,63 @@
 
 <!-- Inclución de la plantilla de header -->
 <%@include file= "templates/header.jsp" %>
-
+<link rel="stylesheet" type="text/css" href="styles.css">
+<section class="vh-100 login-section">
 <section class="vh-100">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-6 text-black">
-          
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" alt="Phone image">
+        <h3 class="custom-leter center-text">¡Bienvenido!</h3><br> 
+            
           <!-- conecta con el servlet de login -->
           <form action="SvLogin" method="post">
 
-        <div class="px-5 ms-xl-4">
-          <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
-          <span class="h1 fw-bold mb-0">Lista de Tareas</span>
-        </div>
-
-        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-
-          <form style="width: 23rem;">
-
-            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Accede</h3>
-
-            <div class="form-outline mb-4">
-                <input type="text" id="cedula" class="form-control form-control-lg" name="cedula"required >
-              <label class="form-label" for="form2Example18">Cédula</label>
-            </div>
-
-            <div class="form-outline mb-4">
-                <input type="password" id="contraseña" class="form-control form-control-lg" name="contraseña"required >
-              <label class="form-label" for="form2Example28">Contraseña</label>
-            </div>
-
-            <div class="pt-1 mb-4">
-                
-              <button class="btn btn-info btn-lg btn-block" type="submit">Ingresar</button>
-            </div>
-
-           <!-- <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p> -->
-            <p>No tienes una cuenta? <a href="registro.jsp" class="link-info">Registrate aquí</a></p>
-
-          </form>
-
-        </div>
-
       </div>
-      <div class="col-sm-6 px-0 d-none d-sm-block">
-        <img src="imagenes/fondo.jpg"
-          alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <form>
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+              <input type="text" id="cedula" class="form-control form-control-lg" name="cedula"required/>
+            <label class="form-label custom-heading for="form1Example13">Cédula</label>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+              <input type="password" id="contraseña" class="form-control form-control-lg" name="contraseña"required/>
+            <label class="form-label custom-heading" for="form1Example23">Contraseña</label>
+          </div>
+
+          <div class="d-flex justify-content-around align-items-center mb-4">
+            <!-- Checkbox -->
+            <!-- comment<div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+              <label class="form-check-label" for="form1Example3"> Remember me </label>
+            </div> -->
+            <p class="custom-heading" >No tienes una cuenta? <a href="registro.jsp">Registrate aquí</a></a></p>
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-lg btn-block custom-heading">Ingresar</button>
+
+          <!-- comment <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+          </div>
+
+          <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!"
+            role="button">
+            <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
+          </a>
+          <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!"
+            role="button">
+            <i class="fab fa-twitter me-2"></i>Continue with Twitter</a> -->
+
+        </form>
       </div>
     </div>
   </div>
+</section>
 </section>
 
 

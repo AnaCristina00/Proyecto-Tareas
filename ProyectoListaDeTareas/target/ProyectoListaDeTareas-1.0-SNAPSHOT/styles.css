@@ -1,1 +1,21 @@
 
+  .login-section {
+    background-image: url('imagenes/degradados.jpg');
+    background-size: cover;
+    background-position:center;
+  }
+  .custom-leter{
+   font-family:"Arial,sans-serif";
+   font-size:45px;
+   color:#4528EB;
+  }
+  
+  .center-text {
+  text-align: center;
+  }
+  
+  .custom-heading {
+  font-family: "Helvetica, sans-serif";
+  color: #E8E8E3;
+  font-size: 24px;
+  }
