@@ -20,13 +20,13 @@
         <form>
           <!-- Email input -->
           <div class="form-outline mb-4">
-              <input type="text" id="cedula" class="form-control form-control-lg" name="cedula"required/>
+              <input type="text" id="cedula" class="form-control form-control-lg" name="cedula" maxlength="10" required pattern="[0-9]+" title="Ingrese sólo números">
             <label class="form-label custom-heading for="form1Example13">Cédula</label>
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-4">
-              <input type="password" id="contraseña" class="form-control form-control-lg" name="contraseña"required/>
+              <input type="password" id="contraseña" class="form-control form-control-lg" name="contraseña"required>
             <label class="form-label custom-heading" for="form1Example23">Contraseña</label>
           </div>
 
@@ -60,6 +60,72 @@
   </div>
 </section>
 </section>
+
+<!-- Verificamos al usuario -->
+    <%
+    String existente=(String)request.getAttribute("existente");
+    if(existente !=null && existente.equals("verdaddero")){
+    %>
+    <script>
+        $(document).ready(function () {
+            usuarioVerificado();
+        });
+    </script>
+    <% }
+    if(existente!=null && existente.equals("falso")){
+    %>
+    <script>
+        $(document).ready(function () {
+           cedulaExistente();
+        });
+    </script>
+    <%
+        }
+        String noExistente = request.getParameter("noExistente");
+        if (noExistente != null && noExistente.equals("false")) {
+    %>
+    <script>
+        $(document).ready(function () {
+            usuarioSinVerificar();
+        });
+    </script>
+    <%
+        }
+        // Limpiar los atributos de la solicitud
+        request.removeAttribute("existente");
+        request.removeAttribute("noExistente");
+    %>
+    
+    <!-- Registro correcto-->
+    <div class="modal fade" id="usuarioRegistrado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="registradoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center align-middle">
+                    <h3 align="center">Usuario registrado correctamente</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     <!-- Modal en caso de que la cédula ya este registrada -->
+    <div class="modal fade" id="mensajeAlerta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mensajeAlertaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center align-middle">
+                    <h2>Datos inválidos</h2>
+                    <p>La cédula que intenta ingresar ya esta registrada</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
 
 
 

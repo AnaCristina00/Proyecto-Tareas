@@ -1,5 +1,6 @@
 com\umariana\proyectolistadetareas\LeerUsuarios.class
 com\umariana\proyectolistadetareas\JAXRSConfiguration.class
+com\umariana\proyectolistadetareas\Tareas.class
 Servlets\SvRegistro.class
 com\umariana\proyectolistadetareas\Usuario.class
 com\umariana\proyectolistadetareas\resources\JavaEE8Resource.class

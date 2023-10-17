@@ -1,22 +1,28 @@
 package com.umariana.proyectolistadetareas;
 
+//Clase Usuario y sus atrubutos
+
+
 public class Usuario {
     
     private String nombre;
     private String apellido;
     private String cedula;
     private String contraseña;
+    //Me permitirá administrar las tareas en una lista
+    
 
+//Constructor vacio
     public Usuario() {
     }
-
+//Constructor lleno
     public Usuario(String nombre, String apellido, String cedula, String contraseña) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
         this.contraseña = contraseña;
     }
-
+//Getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -48,9 +54,5 @@ public class Usuario {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-    
-    
-    
-    
     
 }

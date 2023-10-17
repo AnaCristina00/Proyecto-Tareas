@@ -4,14 +4,12 @@ import com.umariana.proyectolistadetareas.LeerUsuarios;
 import com.umariana.proyectolistadetareas.Usuario;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 @WebServlet(name = "SvLogin", urlPatterns = {"/SvLogin"})
 public class SvLogin extends HttpServlet {
 
@@ -35,46 +33,47 @@ public class SvLogin extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     
-        //Obtener el contexto del servlet
-        ServletContext context = getServletContext();
         
         // Recupera los datos del formulario de inicio de sesión
         String cedula=request.getParameter("cedula");
         String contraseña=request.getParameter("contraseña");
+        
+        //Obtener el contexto del servlet
+        ServletContext context = getServletContext();
 
 
-        // Realiza autenticación
-        boolean verificado = verificarCredenciales(cedula, contraseña);
+        // Realiza verificación si un usuario existe
+       Usuario person = verificarUsuarios(cedula, contraseña, context);
+       //Si el usuario existe se redirige a la página de tareas
 
-        if (verificado) {
-            // Usuario verificado, se redirecciona a la página de tareas
-            response.sendRedirect("formTareas.jsp");
-        } else {
-            // Usuario no verificado, muestra un mensaje de error
-            request.setAttribute("Error", "Datos incorrectos");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+        if (person != null) {
+            request.setAttribute("cedula", person.getCedula());
+            request.setAttribute("nombre", person.getNombre());
+            request.getRequestDispatcher("formTareas.jsp").forward(request, response);
+        }else{
+            //Si el usuario no existe se redirige a la pagina inicial
+            request.getRequestDispatcher("index.jsp?noExiste= " + "false").forward(request, response);
         }
-    }
     
-    private boolean verificarCredenciales(String cedula, String contraseña) throws IOException{
-         // Obtenemos la lista de usuarios desde el archivo usuarios.txt
-        ArrayList<Usuario> usuarios = LeerUsuarios.obtenerUsuarios("/data/usuarios.txt");
-        
-        for(Usuario usuario:usuarios){
-            //Comparamos la cedula y la contraseña
-            if(usuario.getCedula().equals(cedula)&&usuario.getContraseña().equals(contraseña)){
-                return true; //Validacion correcta
-            }
-            
-        }
-        
-        return false;//Validacion incorrecta
     }
-  
 
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
+    private Usuario verificarUsuarios(String cedulaV, String contraseñaV, ServletContext context) throws IOException{
+        
+        ArrayList<Usuario>usuarios=new ArrayList<>();
+        LeerUsuarios.leerArchivo(usuarios, context);
+        
+        for(Usuario u:usuarios){
+            if(u.getCedula().equals(cedulaV)&& u.getContraseña().equals(contraseñaV)){
+                return u;
+            }
+       
+        }
+        return null;
+    }
 }
+

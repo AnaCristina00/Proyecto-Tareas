@@ -3,29 +3,30 @@
 <!-- Inclución de la plantilla de header -->
 <%@include file= "templates/header.jsp" %>
 
-
-<div class="modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Tareas</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Aquí encontraras todas tus tareas</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
+<h1>Mis Tareas</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Tarea</th>
+                <th>Descripción</th>
+                <th>Fecha de Vencimiento</th>
+                <th>Completada</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Utiliza JSP para generar filas de la tabla con datos de tareas -->
+            <c:forEach var="task" items="${tasks}">
+                <tr>
+                    <td>${task.name}</td>
+                    <td>${task.description}</td>
+                    <td>${task.dueDate}</td>
+                    <td>${task.completed ? 'Sí' : 'No'}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</body>
+</html>
 
 
 
